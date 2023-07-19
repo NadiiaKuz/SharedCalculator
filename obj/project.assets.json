@@ -61,11 +61,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\vnesterchuk\\source\\repos\\SharedCalculator\\SharedCalculator.csproj",
+      "projectUniqueName": "C:\\Users\\vnesterchuk\\Source\\Repos\\SharedCalculator Git\\SharedCalculator.csproj",
       "projectName": "SharedCalculator",
-      "projectPath": "C:\\Users\\vnesterchuk\\source\\repos\\SharedCalculator\\SharedCalculator.csproj",
+      "projectPath": "C:\\Users\\vnesterchuk\\Source\\Repos\\SharedCalculator Git\\SharedCalculator.csproj",
       "packagesPath": "C:\\Users\\vnesterchuk\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\vnesterchuk\\source\\repos\\SharedCalculator\\obj\\",
+      "outputPath": "C:\\Users\\vnesterchuk\\Source\\Repos\\SharedCalculator Git\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\DevExpress 21.1\\Components\\Offline Packages",

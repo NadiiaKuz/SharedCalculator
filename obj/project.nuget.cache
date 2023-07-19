@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "pBVDdK6qzaOeiQtvWeDg1mveO167wP5oPfhENYxN1t5NDDyn6xN189WW4dG4C4/YwZiBzNYwkvtkXBNASy9Ceg==",
+  "dgSpecHash": "iyxjbwWbo3X9ChNQ6sjU/JYRsixiAp1hNmBfU2yOJPzzoFCS5dMayQBl3cGFij/y84aCBkcBKLWVlLdiqZ0/Kg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\vnesterchuk\\source\\repos\\SharedCalculator\\SharedCalculator.csproj",
+  "projectFilePath": "C:\\Users\\vnesterchuk\\Source\\Repos\\SharedCalculator Git\\SharedCalculator.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\vnesterchuk\\.nuget\\packages\\devexpressmvvm\\22.1.3\\devexpressmvvm.22.1.3.nupkg.sha512"
   ],

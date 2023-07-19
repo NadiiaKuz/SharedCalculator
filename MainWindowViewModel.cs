@@ -60,27 +60,33 @@ namespace SharedCalculator
         }
 
         #region Commands
-        async Task DigitCommandExecute(string parameter)
+        Task DigitCommandExecute(string parameter)
         {
             CurrentValue = parameter;
-            newInput = false; 
+            newInput = false;
+
+            return Task.CompletedTask;
         }
 
-        async Task BackToZeroExecute()
+        Task BackToZeroExecute()
         {
             CurrentValue = "CE";
             result = 0;
             left = right = null;
+
+            return Task.CompletedTask;
         }
 
-        async Task SignCommandExecute(char parameter)
+        Task SignCommandExecute(char parameter)
         {
             left = Convert.ToDouble(CurrentValue);
             sign = parameter;
             newInput = true;
+
+            return Task.CompletedTask;
         }
 
-        async Task ResultCommandExecute()
+        Task ResultCommandExecute()
         {
             right = Convert.ToDouble(CurrentValue);
             switch (sign)
@@ -97,7 +103,7 @@ namespace SharedCalculator
                         {
                             newInput = true;
                             CurrentValue = "Divide by zero!";
-                            return;
+                            return Task.CompletedTask; ;
                         }
                         else
                             result = res;
@@ -110,13 +116,15 @@ namespace SharedCalculator
 
             newInput = true;
             left = right = null;
-            CurrentValue = result.ToString();          
+            CurrentValue = result.ToString();
+
+            return Task.CompletedTask;
         }
 
-        async Task BackspaceCommandExecute()
+        Task BackspaceCommandExecute()
         {
             if (currentValue == "0")
-                return;
+                return Task.CompletedTask;
 
             if (currentValue.Length == 1)
             {
@@ -128,55 +136,69 @@ namespace SharedCalculator
             }
 
             RaisePropertyChanged(nameof(CurrentValue));
+
+            return Task.CompletedTask;
         }
 
 
-        async Task PercentCommandExecute()
+        Task PercentCommandExecute()
         {
             right = Convert.ToDouble(CurrentValue);
             result = CalculatorService.GetPercent(left.Value, right.Value);
             newInput = true;
-            CurrentValue = result.ToString();           
+            CurrentValue = result.ToString();
+
+            return Task.CompletedTask;
         }
 
-        async Task PowCommandExecute()
+        Task PowCommandExecute()
         {
            left = Convert.ToDouble(CurrentValue);  
            result = CalculatorService.Pow(left.Value);
            newInput = true;
-           CurrentValue = result.ToString();      
+           CurrentValue = result.ToString();
+
+            return Task.CompletedTask;
         }
 
-        async Task SqrtCommandExecute()
+        Task SqrtCommandExecute()
         {
             left = Convert.ToDouble(CurrentValue);
             result = CalculatorService.Sqrt(left.Value);
             newInput = true;
             CurrentValue = result.ToString();
+
+            return Task.CompletedTask;
         }
 
-        async Task AddMinusCommandExecute()
+        Task AddMinusCommandExecute()
         {
-            if (currentValue[0] == '-')
-               currentValue = currentValue.Remove(0, 1);
-            else
-               currentValue = currentValue.Insert(0, "-");
+            currentValue = (currentValue[0] == '-') ? 
+                  currentValue.Remove(0, 1) 
+                : currentValue.Insert(0, "-");
 
             RaisePropertyChanged(nameof(CurrentValue));
+
+            return Task.CompletedTask;
         }
 
-        async Task OneDivideCommandExecute()
+        Task OneDivideCommandExecute()
         {
             left = Convert.ToDouble(CurrentValue);
             var res = CalculatorService.Divide(1, left.Value, out bool divideByZero);
             newInput = true;
+            
             if (divideByZero)
-            {           
+            {
                 CurrentValue = "Divide by zero!";
-                return;
+                return Task.CompletedTask;
             }
             else
-                CurrentValue = res.ToString();  
+            {
+                CurrentValue = res.ToString();
+            }
+
+            return Task.CompletedTask;
         }
 
         bool CanResultCalculate() => left.HasValue && newInput == false;

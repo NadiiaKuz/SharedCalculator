@@ -1,0 +1,78 @@
+﻿<Window x:Class="SharedCalculator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SharedCalculator" d:DataContext="{d:DesignInstance Type=local:MainWindowViewModel}"
+        mc:Ignorable="d"
+        Title="Calculator" Height="450" Width="490" ResizeMode="CanMinimize">
+    <Window.Resources>
+        <Style x:Key="DigitButton">
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5" />
+                </Style>
+            </Style.Resources>
+            <Setter Property="Button.Background" Value="White"/>
+            <Setter Property="Button.FontSize" Value="18"/>
+            <Setter Property="Button.BorderThickness" Value="1"/>
+            <Setter Property="Button.Margin" Value="2" />
+            <Setter Property="Button.MinHeight" Value="50" />
+            <Setter Property="Button.MinWidth" Value="110" />
+        </Style>
+        <Style TargetType="Button">
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5" />
+                    <Setter Property="BorderThickness" Value="1"/>
+                    <Setter Property="Margin" Value="2" />
+                    <Setter Property="MinHeight" Value="50" />
+                    <Setter Property="MinWidth" Value="110" />
+                </Style>
+            </Style.Resources>
+        </Style>
+        <Style TargetType="StackPanel">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+        </Style>
+    </Window.Resources>
+    <StackPanel Background="AliceBlue">
+        <Label Name="resultPanel"  Content="{Binding Path=CurrentValue}" Margin="0,0,10,0" FontSize="50" HorizontalAlignment="Right" />
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Command="{Binding PercentCommand}" Background="Transparent" FontSize="22" Content="%" />
+            <Button Command="{Binding BackToZeroCommand}" Background="Transparent" FontSize="18" Content="CE"/>
+            <Button Command="{Binding BackToZeroCommand}" Background="Transparent" FontSize="18" Content="C"/>
+            <Button Command="{Binding BackspaceCommand}" Background="Transparent" FontSize="16" Content="Backspace"/>
+        </StackPanel>       
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Command="{Binding OneDivideCommand}" Background="Transparent" FontSize="18" Content="1/x"/>
+            <Button Command="{Binding PowCommand}" Background="Transparent" FontSize="16" Content="Pow(x, 2)"/>
+            <Button Command="{Binding SqrtCommand}" Background="Transparent" FontSize="16" Content="Sqrt(x)" />
+            <Button Command="{Binding SignCommand}" CommandParameter="/" Background="Transparent" FontSize="18" Content="/"/>
+        </StackPanel>       
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Command="{Binding InputDigitCommand}" CommandParameter="7" Style="{StaticResource DigitButton}" Content="7"/>
+            <Button Command="{Binding InputDigitCommand}" CommandParameter="8" Style="{StaticResource DigitButton}" Content="8"/>
+            <Button Command="{Binding InputDigitCommand}" CommandParameter="9" Style="{StaticResource DigitButton}" Content="9"/>
+            <Button Command="{Binding SignCommand}" CommandParameter="*" Background="Transparent" FontSize="18" Content="x"/>
+        </StackPanel>       
+        <StackPanel  Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Command="{Binding InputDigitCommand}" CommandParameter="4" Style="{StaticResource DigitButton}" Content="4"/>
+            <Button Command="{Binding InputDigitCommand}" CommandParameter="5" Style="{StaticResource DigitButton}" Content="5"/>
+            <Button Command="{Binding InputDigitCommand}" CommandParameter="6" Style="{StaticResource DigitButton}" Content="6"/>
+            <Button Command="{Binding SignCommand}" CommandParameter="-" Background="Transparent" FontSize="26" Content="-"/>
+        </StackPanel>       
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Command="{Binding InputDigitCommand}" CommandParameter="1" Style="{StaticResource DigitButton}" Content="1"/>
+            <Button Command="{Binding InputDigitCommand}" CommandParameter="2" Style="{StaticResource DigitButton}" Content="2"/>
+            <Button Command="{Binding InputDigitCommand}" CommandParameter="3" Style="{StaticResource DigitButton}" Content="3"/>
+            <Button Command="{Binding SignCommand}" CommandParameter="+" Background="Transparent" FontSize="18" Content="+"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Command="{Binding AddMinusCommand}" Style="{StaticResource DigitButton}" Content="+/-"/>
+            <Button Command="{Binding InputDigitCommand}" CommandParameter="0" Style="{StaticResource DigitButton}" Content="0" />
+            <Button Command="{Binding InputDigitCommand}" CommandParameter="." Style="{StaticResource DigitButton}" Content="." />
+            <Button Command="{Binding ResultCommand}" Background="DarkViolet" Foreground="White" FontSize="26" Content="="/>
+        </StackPanel>
+    </StackPanel>
+</Window>

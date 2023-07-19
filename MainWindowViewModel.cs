@@ -43,12 +43,17 @@ namespace SharedCalculator
             set 
             {
                 if (value == "CE")
+                { 
                     currentValue = "0"; 
-                else
-                if (CurrentValue == "0" || newInput)
+                }
+                else if (CurrentValue == "0" || newInput)
+                {
                     currentValue = value;
+                }
                 else
-                    currentValue += value;         
+                {
+                    currentValue += value;
+                }
 
                 RaisePropertyChanged(nameof(CurrentValue));
             }

@@ -91,26 +91,19 @@ namespace SharedCalculator
             right = Convert.ToDouble(CurrentValue);
             switch (sign)
             {
-                case '+': result = CalculatorService.Add(left.Value, right.Value);
+                case '+': result = 0; // TODO: Implement and call adding method
                     break;
                 case '-':
-                    result = CalculatorService.Subtraction(left.Value, right.Value);
+                    result = 0; // TODO: Implement and call subtracting method 
                     break;
                 case '/':
                     {
-                        var res = CalculatorService.Divide(left.Value, right.Value, out bool divedeOnZero);
-                        if (divedeOnZero)
-                        {
-                            newInput = true;
-                            CurrentValue = "Divide by zero!";
-                            return Task.CompletedTask; ;
-                        }
-                        else
-                            result = res;
+                        result = 0; // TODO: Implement and call dividing method. Check on zero - if divide by zero need message Divide by Zero!  
+
                     }
                     break;
                 case '*':
-                    result = CalculatorService.Multiply(left.Value, right.Value);
+                    result = 0; // TODO: Implement and call multiply method
                     break;
             }
 
@@ -203,7 +196,11 @@ namespace SharedCalculator
 
         bool CanResultCalculate() => left.HasValue && newInput == false;
 
-        bool UnarCanExecute() => currentValue != "0" && !right.HasValue;  
+        bool UnarCanExecute() => currentValue != "0" && !right.HasValue;
+        #endregion
+
+        #region Calculator methods
+
         #endregion
     }
 }

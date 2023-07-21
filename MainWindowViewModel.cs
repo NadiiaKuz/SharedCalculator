@@ -94,7 +94,7 @@ namespace SharedCalculator
                 case '+': result = 0; // TODO: Implement and call adding method
                     break;
                 case '-':
-                    result = 0; // TODO: Implement and call subtracting method 
+                    result = Subtract(left, right); // TODO: Implement and call subtracting method 
                     break;
                 case '/':
                     {
@@ -193,6 +193,10 @@ namespace SharedCalculator
         #endregion
 
         #region Calculator methods
+
+        double Subtract(double? num1,double? num2)=> 
+                (double)(num1 - num2);
+
 
         #endregion
     }

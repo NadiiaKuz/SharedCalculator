@@ -36,7 +36,7 @@ namespace SharedCalculator
             AddMinusCommand = new AsyncCommand(AddMinusCommandExecute, UnaryCanExecute);
             OneDivideCommand = new AsyncCommand(OneDivideCommandExecute, UnaryCanExecute);
         }      
-
+        // qwdswded edfewd
         public string CurrentValue
         {
             get => currentValue;

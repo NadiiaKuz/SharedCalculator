@@ -4,6 +4,9 @@ using System.Threading.Tasks;
 
 namespace SharedCalculator
 {
+    /// <summary>
+    /// Main ViewModel
+    /// </summary>
     public class MainWindowViewModel : ViewModelBase 
     {
         public IAsyncCommand InputDigitCommand { get; }
@@ -191,7 +194,6 @@ namespace SharedCalculator
 
         bool UnaryCanExecute() => currentValue != "0" && !right.HasValue;
         #endregion
-
         #region Calculator methods
 
         #endregion

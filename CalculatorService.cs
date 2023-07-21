@@ -17,7 +17,7 @@ namespace SharedCalculator
             diveOnZero = false;
             return a / b;
         }
-        public static double Muliply(double a, double b) => a * b;
+        public static double Multiply(double a, double b) => a * b;
         public static double Pow(double n) => Math.Pow(n, 2);
         public static double Sqrt(double n) => Math.Sqrt(n);   
         public static double GetPercent(double sum, double percent) => sum / 100 * percent; 

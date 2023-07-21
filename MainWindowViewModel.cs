@@ -110,7 +110,7 @@ namespace SharedCalculator
                     }
                     break;
                 case '*':
-                    result = CalculatorService.Muliply(left.Value, right.Value);
+                    result = CalculatorService.Multiply(left.Value, right.Value);
                     break;
             }
 

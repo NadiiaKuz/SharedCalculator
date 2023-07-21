@@ -30,11 +30,11 @@ namespace SharedCalculator
             SignCommand = new AsyncCommand<char>(SignCommandExecute);
             ResultCommand = new AsyncCommand(ResultCommandExecute, CanResultCalculate);
             BackspaceCommand = new AsyncCommand(BackspaceCommandExecute);
-            PercentCommand = new AsyncCommand(PercentCommandExecute);
-            PowCommand = new AsyncCommand(PowCommandExecute, UnarCanExecute);
-            SqrtCommand = new AsyncCommand(SqrtCommandExecute, UnarCanExecute);
-            AddMinusCommand = new AsyncCommand(AddMinusCommandExecute, UnarCanExecute);
-            OneDivideCommand = new AsyncCommand(OneDivideCommandExecute, UnarCanExecute);
+            PercentCommand = new AsyncCommand(PercentCommandExecute, CanResultCalculate);
+            PowCommand = new AsyncCommand(PowCommandExecute, UnaryCanExecute);
+            SqrtCommand = new AsyncCommand(SqrtCommandExecute, UnaryCanExecute);
+            AddMinusCommand = new AsyncCommand(AddMinusCommandExecute, UnaryCanExecute);
+            OneDivideCommand = new AsyncCommand(OneDivideCommandExecute, UnaryCanExecute);
         }      
 
         public string CurrentValue
@@ -144,9 +144,10 @@ namespace SharedCalculator
         Task PercentCommandExecute()
         {
             right = Convert.ToDouble(CurrentValue);
-            result = CalculatorService.GetPercent(left.Value, right.Value);
-            newInput = true;
-            CurrentValue = result.ToString();
+            right = CalculatorService.GetPercent(left.Value, right.Value);
+            currentValue = right.Value.ToString();
+            
+            RaisePropertiesChanged(nameof(CurrentValue));   
 
             return Task.CompletedTask;
         }
@@ -203,7 +204,7 @@ namespace SharedCalculator
 
         bool CanResultCalculate() => left.HasValue && newInput == false;
 
-        bool UnarCanExecute() => currentValue != "0" && !right.HasValue;  
+        bool UnaryCanExecute() => currentValue != "0" && !right.HasValue;  
         #endregion
     }
 }

@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove=".gitignore" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="DevExpressMvvm" Version="22.1.3" />
   </ItemGroup>
 

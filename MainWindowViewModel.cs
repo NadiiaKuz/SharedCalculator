@@ -98,7 +98,7 @@ namespace SharedCalculator
                     break;
                 case '/':
                     {
-                        result = DividingMethod(left, right);
+                        result = 0;
                                     // TODO: Check on zero - if divide by zero need message Divide by Zero!
                                     // CurrentValue = divide by zero need message Divide by Zero!
                       //  return Task.CompletedTask;
@@ -195,10 +195,12 @@ namespace SharedCalculator
         #endregion
 
         #region Calculator methods
-        static double DividingMethod(double left, double right)
+        static double DividingMethod(double left, double right, out bool isDividedByZero)
         {
+            isDividedByZero = false;
             if (right == 0)
             {
+                isDividedByZero = true;
                 return 0;
             }
             return left / right;

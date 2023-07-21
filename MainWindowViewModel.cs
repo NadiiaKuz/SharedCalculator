@@ -138,7 +138,7 @@ namespace SharedCalculator
         Task PercentCommandExecute()
         {
             right = Convert.ToDouble(CurrentValue);
-            right = 0;   // TODO: Implement and call get percent method with right value form left.Value
+            right = GetPercent(right.Value, left.Value);   // TODO: Implement and call get percent method with right value form left.Value
             currentValue = right.Value.ToString();
 
             RaisePropertiesChanged(nameof(CurrentValue));
@@ -195,6 +195,11 @@ namespace SharedCalculator
         #endregion
 
         #region Calculator methods
+
+        static double GetPercent(double value, double percent)
+        {
+            return value / 100 * percent;
+        }
 
         #endregion
     }

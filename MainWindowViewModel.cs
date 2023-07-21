@@ -30,7 +30,7 @@ namespace SharedCalculator
             SignCommand = new AsyncCommand<char>(SignCommandExecute);
             ResultCommand = new AsyncCommand(ResultCommandExecute, CanResultCalculate);
             BackspaceCommand = new AsyncCommand(BackspaceCommandExecute);
-            PercentCommand = new AsyncCommand(PercentCommandExecute);
+            PercentCommand = new AsyncCommand(PercentCommandExecute, CanResultCalculate);
             PowCommand = new AsyncCommand(PowCommandExecute, UnaryCanExecute);
             SqrtCommand = new AsyncCommand(SqrtCommandExecute, UnaryCanExecute);
             AddMinusCommand = new AsyncCommand(AddMinusCommandExecute, UnaryCanExecute);
@@ -131,15 +131,15 @@ namespace SharedCalculator
             RaisePropertyChanged(nameof(CurrentValue));
 
             return Task.CompletedTask;
-        }
-
+        }      
 
         Task PercentCommandExecute()
         {
             right = Convert.ToDouble(CurrentValue);
-            right = 0; // TODO: Implement and call get percent method with right value
-            newInput = true;
-            CurrentValue = right.Value.ToString();
+            right = 0; // TODO: Implement and call get percent method with right value form left.Value
+            currentValue = right.Value.ToString();
+
+            RaisePropertiesChanged(nameof(CurrentValue));
 
             return Task.CompletedTask;
         }

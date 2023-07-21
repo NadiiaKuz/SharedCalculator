@@ -98,8 +98,8 @@ namespace SharedCalculator
                     break;
                 case '/':
                     {
-                        result = 0; // TODO: Implement and call dividing method. Check on zero - if divide by zero need message Divide by Zero!  
-
+                        result = 0; // TODO: Implement and call dividing method.
+                                    // TODO: Check on zero - if divide by zero need message Divide by Zero!
                     }
                     break;
                 case '*':
@@ -137,9 +137,9 @@ namespace SharedCalculator
         Task PercentCommandExecute()
         {
             right = Convert.ToDouble(CurrentValue);
-            result = 0; // TODO: Implement and call get percent method
+            right = 0; // TODO: Implement and call get percent method with right value
             newInput = true;
-            CurrentValue = result.ToString();
+            CurrentValue = right.Value.ToString();
 
             return Task.CompletedTask;
         }

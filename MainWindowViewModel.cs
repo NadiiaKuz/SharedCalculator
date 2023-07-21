@@ -137,7 +137,7 @@ namespace SharedCalculator
         Task PercentCommandExecute()
         {
             right = Convert.ToDouble(CurrentValue);
-            result = CalculatorService.GetPercent(left.Value, right.Value);
+            result = 0; // TODO: Implement and call get percent method
             newInput = true;
             CurrentValue = result.ToString();
 
@@ -147,7 +147,7 @@ namespace SharedCalculator
         Task PowCommandExecute()
         {
            left = Convert.ToDouble(CurrentValue);  
-           result = CalculatorService.Pow(left.Value);
+           result = 0; // TODO: Implement and call pow method
            newInput = true;
            CurrentValue = result.ToString();
 
@@ -157,7 +157,7 @@ namespace SharedCalculator
         Task SqrtCommandExecute()
         {
             left = Convert.ToDouble(CurrentValue);
-            result = CalculatorService.Sqrt(left.Value);
+            result = 0; // TODO: Implement and call get sqrt method
             newInput = true;
             CurrentValue = result.ToString();
 
@@ -178,18 +178,11 @@ namespace SharedCalculator
         Task OneDivideCommandExecute()
         {
             left = Convert.ToDouble(CurrentValue);
-            var res = CalculatorService.Divide(1, left.Value, out bool divideByZero);
+            var res = 0; // TODO - Call divide method 1 / left.Value
             newInput = true;
-            
-            if (divideByZero)
-            {
-                CurrentValue = "Divide by zero!";
-                return Task.CompletedTask;
-            }
-            else
-            {
-                CurrentValue = res.ToString();
-            }
+            // TODO: Check on dividing method
+           //if true current value = message 
+           // else res.ToString
 
             return Task.CompletedTask;
         }

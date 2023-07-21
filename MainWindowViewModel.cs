@@ -94,7 +94,7 @@ namespace SharedCalculator
                 case '+': result = CalculatorService.Add(left.Value, right.Value);
                     break;
                 case '-':
-                    result = CalculatorService.Substraction(left.Value, right.Value);
+                    result = CalculatorService.Subtraction(left.Value, right.Value);
                     break;
                 case '/':
                     {

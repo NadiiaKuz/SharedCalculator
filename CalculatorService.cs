@@ -5,7 +5,7 @@ namespace SharedCalculator
     public static class CalculatorService
     {
         public static double Add(double a, double b) => a + b;
-        public static double Substraction(double a, double b) => a - b;
+        public static double Subtraction(double a, double b) => a - b;
         public static double Divide(double a, double b, out bool diveOnZero)
         {
             if (b == 0)

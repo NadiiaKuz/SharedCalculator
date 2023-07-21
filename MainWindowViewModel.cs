@@ -17,10 +17,10 @@ namespace SharedCalculator
         public AsyncCommand AddMinusCommand { get; }   
         public AsyncCommand OneDivideCommand { get; }   
 
-        private double result = 0;
-        private string currentValue = "0";
-        private char sign;
-        private double? left = null, right = null;
+        double result = 0;
+        string currentValue = "0";
+        char sign;
+        double? left = null, right = null;
         bool newInput = true;
 
         public MainWindowViewModel()

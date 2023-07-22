@@ -36,7 +36,7 @@ namespace SharedCalculator
             AddMinusCommand = new AsyncCommand(AddMinusCommandExecute, UnaryCanExecute);
             OneDivideCommand = new AsyncCommand(OneDivideCommandExecute, UnaryCanExecute);
         }      
-
+        // qwdswded edfewd
         public string CurrentValue
         {
             get => currentValue;
@@ -94,7 +94,7 @@ namespace SharedCalculator
                 case '+': result = 0; // TODO: Implement and call adding method
                     break;
                 case '-':
-                    result = 0; // TODO: Implement and call subtracting method 
+                    result = Subtract(left, right); // TODO: Implement and call subtracting method 
                     break;
                 case '/':
                     {
@@ -210,6 +210,10 @@ namespace SharedCalculator
         {
             return value / 100 * percent;
         }
+
+        double Subtract(double? num1,double? num2)=> 
+                (double)(num1 - num2);
+
 
         #endregion
     }

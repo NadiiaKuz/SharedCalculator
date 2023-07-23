@@ -105,7 +105,7 @@ namespace SharedCalculator
                     }
                     break;
                 case '*':
-                    result = 0; // TODO: Implement and call multiply method
+                    result = Multiply(left, right); // TODO: Implement and call multiply method
                     break;
             }
 
@@ -214,7 +214,7 @@ namespace SharedCalculator
         double Subtract(double? num1,double? num2)=> 
                 (double)(num1 - num2);
 
-
+        double Multiply(double? num1, double? num2) => (double)(num1 * num2);
         #endregion
     }
 }

@@ -98,7 +98,14 @@ namespace SharedCalculator
                     break;
                 case '/':
                     {
-                        result = 0;
+                        bool isDividedByZero;
+                        result = DividingMethod((double) left, (double) right, out isDividedByZero);
+                        if (isDividedByZero)
+                        {
+                            CurrentValue = "Divide by Zero!";
+                            return Task.CompletedTask;
+                        }
+
                                     // TODO: Check on zero - if divide by zero need message Divide by Zero!
                                     // CurrentValue = divide by zero need message Divide by Zero!
                       //  return Task.CompletedTask;

@@ -103,12 +103,9 @@ namespace SharedCalculator
                         if (isDividedByZero)
                         {
                             CurrentValue = "Divide by Zero!";
+                            newInput = true;
                             return Task.CompletedTask;
-                        }
-
-                                    // TODO: Check on zero - if divide by zero need message Divide by Zero!
-                                    // CurrentValue = divide by zero need message Divide by Zero!
-                      //  return Task.CompletedTask;
+                        }                                   
                     }
                     break;
                 case '*':

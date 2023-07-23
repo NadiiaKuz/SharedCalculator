@@ -91,7 +91,7 @@ namespace SharedCalculator
             right = Convert.ToDouble(CurrentValue);
             switch (sign)
             {
-                case '+': result = 0; // TODO: Implement and call adding method
+                case '+': result = Add (left, right); // TODO: Implement and call adding method
                     break;
                 case '-':
                     result = Subtract(left, right); 
@@ -228,6 +228,11 @@ namespace SharedCalculator
 
         double Subtract(double? num1,double? num2)=> 
                 (double)(num1 - num2);
+
+        static double Add (double? value1 , double? value2)
+        {
+            return (double) (value1 + value2);
+        }
 
         double Multiply(double? num1, double? num2) => (double)(num1 * num2);
         #endregion

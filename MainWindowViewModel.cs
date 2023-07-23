@@ -46,7 +46,7 @@ namespace SharedCalculator
                 { 
                     currentValue = "0"; 
                 }
-                else if (CurrentValue == "0" || newInput)
+                else if ((CurrentValue == "0" || newInput) && value != ".")
                 {
                     currentValue = value;
                 }
@@ -79,7 +79,9 @@ namespace SharedCalculator
 
         Task SignCommandExecute(char parameter)
         {
-            left = Convert.ToDouble(CurrentValue);
+            left = Double.TryParse(CurrentValue, out double res) ? res : 
+                   Double.Parse(CurrentValue.Replace('.', ',')) ;
+
             sign = parameter;
             newInput = true;
 

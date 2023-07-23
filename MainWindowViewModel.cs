@@ -159,7 +159,18 @@ namespace SharedCalculator
         Task SqrtCommandExecute()
         {
             left = Convert.ToDouble(CurrentValue);
-            result = 0; // TODO: Implement and call get sqrt method
+            // TODO: Implement and call get sqrt method
+            if ( left >= 0)
+            {
+                result = Math.Sqrt((double)left);
+            }
+            else
+            {
+                currentValue = "Invalid input";
+                RaisePropertiesChanged(nameof(CurrentValue));
+                return Task.CompletedTask;
+            }
+
             newInput = true;
             CurrentValue = result.ToString();
 

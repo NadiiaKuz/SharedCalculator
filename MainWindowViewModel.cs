@@ -36,7 +36,7 @@ namespace SharedCalculator
             AddMinusCommand = new AsyncCommand(AddMinusCommandExecute, UnaryCanExecute);
             OneDivideCommand = new AsyncCommand(OneDivideCommandExecute, UnaryCanExecute);
         }      
-        // qwdswded edfewd
+        
         public string CurrentValue
         {
             get => currentValue;
@@ -94,7 +94,7 @@ namespace SharedCalculator
                 case '+': result = 0; // TODO: Implement and call adding method
                     break;
                 case '-':
-                    result = Subtract(left, right); // TODO: Implement and call subtracting method 
+                    result = Subtract(left, right); 
                     break;
                 case '/':
                     {
@@ -105,7 +105,7 @@ namespace SharedCalculator
                     }
                     break;
                 case '*':
-                    result = Multiply(left, right); // TODO: Implement and call multiply method
+                    result = Multiply(left, right); 
                     break;
             }
 
@@ -138,7 +138,7 @@ namespace SharedCalculator
         Task PercentCommandExecute()
         {
             right = Convert.ToDouble(CurrentValue);
-            right = GetPercent(left.Value, right.Value);   // TODO: Implement and call get percent method with right value form left.Value
+            right = GetPercent(left.Value, right.Value);  
             currentValue = right.Value.ToString();
 
             RaisePropertiesChanged(nameof(CurrentValue));
@@ -159,7 +159,7 @@ namespace SharedCalculator
         Task SqrtCommandExecute()
         {
             left = Convert.ToDouble(CurrentValue);
-            // TODO: Implement and call get sqrt method
+
             if ( left >= 0)
             {
                 result = Math.Sqrt((double)left);

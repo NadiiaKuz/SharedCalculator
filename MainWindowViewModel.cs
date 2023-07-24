@@ -34,7 +34,7 @@ namespace SharedCalculator
             PowCommand = new AsyncCommand(PowCommandExecute, UnaryCanExecute);
             SqrtCommand = new AsyncCommand(SqrtCommandExecute, UnaryCanExecute);
             AddMinusCommand = new AsyncCommand(AddMinusCommandExecute, UnaryCanExecute);
-            OneDivideCommand = new AsyncCommand(OneDivideCommandExecute/*, UnaryCanExecute*/);
+            OneDivideCommand = new AsyncCommand(OneDivideCommandExecute /*, UnaryCanExecute*/);
         }      
 
         public string CurrentValue
@@ -181,9 +181,10 @@ namespace SharedCalculator
         {
             left = Convert.ToDouble(CurrentValue);
 
-            //var res = GetOneDivOnLeft((double)left); // TODO - Call divide method 1 / left.Value
+            
             newInput = true;
-            CurrentValue = (GetOneDivOnLeft((double)left) == 0) ? "Error DIV on 0" : $"{GetOneDivOnLeft((double)left)}";
+            var res = DividingMethod(1,left.Value,out bool divByZero); // TODO - Call divide method 1 / left.Value
+            CurrentValue = (divByZero) ? "Error DIV on 0":res.ToString();
             // TODO: Check on dividing method
            //if true current CurrentValue = message 
            // else CurrentValue = res.ToString
@@ -208,13 +209,7 @@ namespace SharedCalculator
             return left / right;
         }
 
-        static double GetOneDivOnLeft(double left)
-        {
-            DividingMethod(1,left,out bool isDivideOnZero);
-            return (isDivideOnZero) ? 0 : 1 / left; //As any number can't give 0 as result we
-                                                    //use it as return value for division by 0
-
-        }
+       
 
         #endregion
     }

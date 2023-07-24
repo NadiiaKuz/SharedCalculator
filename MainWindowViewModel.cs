@@ -1,6 +1,7 @@
 ﻿using DevExpress.Mvvm;
 using System;
 using System.Threading.Tasks;
+using System.Globalization;
 
 namespace SharedCalculator
 {
@@ -79,8 +80,7 @@ namespace SharedCalculator
 
         Task SignCommandExecute(char parameter)
         {
-            left = Double.TryParse(CurrentValue, out double res) ? res : 
-                   Double.Parse(CurrentValue.Replace('.', ',')) ;
+            left = Double.Parse(CurrentValue, CultureInfo.InvariantCulture);
 
             sign = parameter;
             newInput = true;

@@ -1,6 +1,7 @@
 ﻿using DevExpress.Mvvm;
 using System;
 using System.Threading.Tasks;
+using System.Globalization;
 
 namespace SharedCalculator
 {
@@ -36,7 +37,7 @@ namespace SharedCalculator
             AddMinusCommand = new AsyncCommand(AddMinusCommandExecute, UnaryCanExecute);
             OneDivideCommand = new AsyncCommand(OneDivideCommandExecute /*, UnaryCanExecute*/);
         }      
-
+        
         public string CurrentValue
         {
             get => currentValue;
@@ -46,7 +47,7 @@ namespace SharedCalculator
                 { 
                     currentValue = "0"; 
                 }
-                else if (CurrentValue == "0" || newInput)
+                else if ((CurrentValue == "0" || newInput) && value != ".")
                 {
                     currentValue = value;
                 }
@@ -79,7 +80,8 @@ namespace SharedCalculator
 
         Task SignCommandExecute(char parameter)
         {
-            left = Convert.ToDouble(CurrentValue);
+            left = Double.Parse(CurrentValue, CultureInfo.InvariantCulture);
+
             sign = parameter;
             newInput = true;
 
@@ -91,21 +93,25 @@ namespace SharedCalculator
             right = Convert.ToDouble(CurrentValue);
             switch (sign)
             {
-                case '+': result = 0; // TODO: Implement and call adding method
+                case '+': result = Add (left, right); // TODO: Implement and call adding method
                     break;
                 case '-':
-                    result = 0; // TODO: Implement and call subtracting method 
+                    result = Subtract(left, right); 
                     break;
                 case '/':
                     {
-                        result = 0;
-                                    // TODO: Check on zero - if divide by zero need message Divide by Zero!
-                                    // CurrentValue = divide by zero need message Divide by Zero!
-                      //  return Task.CompletedTask;
+                        bool isDividedByZero;
+                        result = DividingMethod((double) left, (double) right, out isDividedByZero);
+                        if (isDividedByZero)
+                        {
+                            CurrentValue = "Divide by Zero!";
+                            newInput = true;
+                            return Task.CompletedTask;
+                        }                                   
                     }
                     break;
                 case '*':
-                    result = 0; // TODO: Implement and call multiply method
+                    result = Multiply(left, right); 
                     break;
             }
 
@@ -138,7 +144,7 @@ namespace SharedCalculator
         Task PercentCommandExecute()
         {
             right = Convert.ToDouble(CurrentValue);
-            right = 0;   // TODO: Implement and call get percent method with right value form left.Value
+            right = GetPercent(left.Value, right.Value);  
             currentValue = right.Value.ToString();
 
             RaisePropertiesChanged(nameof(CurrentValue));
@@ -159,7 +165,18 @@ namespace SharedCalculator
         Task SqrtCommandExecute()
         {
             left = Convert.ToDouble(CurrentValue);
-            result = 0; // TODO: Implement and call get sqrt method
+
+            if ( left >= 0)
+            {
+                result = Math.Sqrt((double)left);
+            }
+            else
+            {
+                currentValue = "Invalid input";
+                RaisePropertiesChanged(nameof(CurrentValue));
+                return Task.CompletedTask;
+            }
+
             newInput = true;
             CurrentValue = result.ToString();
 
@@ -208,8 +225,21 @@ namespace SharedCalculator
             return left / right;
         }
 
-       
+        static double GetPercent(double value, double percent)
+        {
+            return value / 100 * percent;
+        }
 
+        double Subtract(double? num1,double? num2)=> 
+                (double)(num1 - num2);
+
+        static double Add (double? value1 , double? value2)
+        {
+            return (double) (value1 + value2);
+        }
+
+        double Multiply(double? num1, double? num2) => (double)(num1 * num2);
+        
         #endregion
     }
 }

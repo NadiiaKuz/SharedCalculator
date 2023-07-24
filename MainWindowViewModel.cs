@@ -35,7 +35,7 @@ namespace SharedCalculator
             PowCommand = new AsyncCommand(PowCommandExecute, UnaryCanExecute);
             SqrtCommand = new AsyncCommand(SqrtCommandExecute, UnaryCanExecute);
             AddMinusCommand = new AsyncCommand(AddMinusCommandExecute, UnaryCanExecute);
-            OneDivideCommand = new AsyncCommand(OneDivideCommandExecute, UnaryCanExecute);
+            OneDivideCommand = new AsyncCommand(OneDivideCommandExecute /*, UnaryCanExecute*/);
         }      
         
         public string CurrentValue
@@ -197,8 +197,10 @@ namespace SharedCalculator
         Task OneDivideCommandExecute()
         {
             left = Convert.ToDouble(CurrentValue);
-            var res = 0; // TODO - Call divide method 1 / left.Value
+
             newInput = true;
+            var res = DividingMethod(1, left.Value, out bool divByZero); // TODO - Call divide method 1 / left.Value
+            CurrentValue = (divByZero) ? "Divide by Zero!" : res.ToString();
             // TODO: Check on dividing method
            //if true current CurrentValue = message 
            // else CurrentValue = res.ToString
@@ -237,6 +239,7 @@ namespace SharedCalculator
         }
 
         double Multiply(double? num1, double? num2) => (double)(num1 * num2);
+        
         #endregion
     }
 }

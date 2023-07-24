@@ -183,7 +183,7 @@ namespace SharedCalculator
 
             newInput = true;
             var res = DividingMethod(1, left.Value, out bool divByZero); // TODO - Call divide method 1 / left.Value
-            CurrentValue = (divByZero) ? "Error DIV on 0" : res.ToString();
+            CurrentValue = (divByZero) ? "Divide by Zero!" : res.ToString();
             // TODO: Check on dividing method
            //if true current CurrentValue = message 
            // else CurrentValue = res.ToString

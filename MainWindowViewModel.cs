@@ -146,13 +146,14 @@ namespace SharedCalculator
 
         Task PowCommandExecute()
         {
-           left = Convert.ToDouble(CurrentValue);  
-           result = 0; // TODO: Implement and call pow method
-           newInput = true;
-           CurrentValue = result.ToString();
+            left = Convert.ToDouble(CurrentValue);
+            result = Math.Pow(left.Value, 2); // Використовуємо метод Math.Pow() для піднесення до квадрату
+            newInput = true;
+            CurrentValue = result.ToString();
 
             return Task.CompletedTask;
         }
+
 
         Task SqrtCommandExecute()
         {

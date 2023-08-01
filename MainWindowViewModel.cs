@@ -18,11 +18,12 @@ namespace SharedCalculator
         public AsyncCommand AddMinusCommand { get; }   
         public AsyncCommand OneDivideCommand { get; }   
 
-        double result = 0;
-        string currentValue = "0";
-        char sign;
-        double? left = null, right = null;
-        bool newInput = true;
+        private const string ErrorMessage = "Divide by Zero!";
+        private double result = 0;
+        private string currentValue = "0";
+        private char sign;
+        private double? left = null, right = null;
+        private bool newInput = true;
 
         public MainWindowViewModel()
         {
@@ -40,7 +41,7 @@ namespace SharedCalculator
         
         public string CurrentValue
         {
-            get => currentValue;
+            get { return currentValue; }
             set 
             {
                 if (value == "CE")
@@ -104,7 +105,7 @@ namespace SharedCalculator
                         result = DividingMethod((double) left, (double) right, out isDividedByZero);
                         if (isDividedByZero)
                         {
-                            CurrentValue = "Divide by Zero!";
+                            CurrentValue = ErrorMessage;
                             newInput = true;
                             return Task.CompletedTask;
                         }                                   
@@ -201,7 +202,7 @@ namespace SharedCalculator
 
             newInput = true;
             var res = DividingMethod(1, left.Value, out bool divByZero); // TODO - Call divide method 1 / left.Value
-            CurrentValue = (divByZero) ? "Divide by Zero!" : res.ToString();
+            CurrentValue = (divByZero) ? ErrorMessage : res.ToString();
             // TODO: Check on dividing method
            //if true current CurrentValue = message 
            // else CurrentValue = res.ToString

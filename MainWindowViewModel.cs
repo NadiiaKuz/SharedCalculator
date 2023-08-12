@@ -94,15 +94,15 @@ namespace SharedCalculator
             right = Convert.ToDouble(CurrentValue);
             switch (sign)
             {
-                case '+': result = Add (left, right); // TODO: Implement and call adding method
+                case '+': result = Calculator.Add (left.Value, right.Value);
                     break;
                 case '-':
-                    result = Subtract(left, right); 
+                    result = Calculator.Sub(left.Value, right.Value); 
                     break;
                 case '/':
                     {
                         bool isDividedByZero;
-                        result = DividingMethod((double) left, (double) right, out isDividedByZero);
+                        result = Calculator.Div(left.Value, right.Value, out isDividedByZero);
                         if (isDividedByZero)
                         {
                             CurrentValue = ErrorMessage;
@@ -112,7 +112,7 @@ namespace SharedCalculator
                     }
                     break;
                 case '*':
-                    result = Multiply(left, right); 
+                    result = Calculator.Mul(left.Value, right.Value); 
                     break;
             }
 
@@ -145,7 +145,7 @@ namespace SharedCalculator
         Task PercentCommandExecute()
         {
             right = Convert.ToDouble(CurrentValue);
-            right = GetPercent(left.Value, right.Value);  
+            right = Calculator.GetPercent(left.Value, right.Value);  
             currentValue = right.Value.ToString();
 
             RaisePropertiesChanged(nameof(CurrentValue));
@@ -201,7 +201,7 @@ namespace SharedCalculator
             left = Convert.ToDouble(CurrentValue);
 
             newInput = true;
-            var res = DividingMethod(1, left.Value, out bool divByZero); // TODO - Call divide method 1 / left.Value
+            var res = Calculator.Div(1, left.Value, out bool divByZero); // TODO - Call divide method 1 / left.Value
             CurrentValue = (divByZero) ? ErrorMessage : res.ToString();
             // TODO: Check on dividing method
            //if true current CurrentValue = message 
@@ -213,35 +213,6 @@ namespace SharedCalculator
         bool CanResultCalculate() => left.HasValue && newInput == false;
 
         bool UnaryCanExecute() => currentValue != "0" && !right.HasValue;
-        #endregion
-
-        #region Calculator methods
-        static double DividingMethod(double left, double right, out bool isDividedByZero)
-        {
-            isDividedByZero = false;
-            if (right == 0)
-            {
-                isDividedByZero = true;
-                return 0;
-            }
-            return left / right;
-        }
-
-        static double GetPercent(double value, double percent)
-        {
-            return value / 100 * percent;
-        }
-
-        double Subtract(double? num1,double? num2)=> 
-                (double)(num1 - num2);
-
-        static double Add (double? value1 , double? value2)
-        {
-            return (double) (value1 + value2);
-        }
-
-        double Multiply(double? num1, double? num2) => (double)(num1 * num2);
-        
         #endregion
     }
 }
